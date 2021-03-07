@@ -13,7 +13,7 @@ io.on('connection', (socket) => {
     // message event
     socket.on('message', (msg) => {
         console.log("message: ", msg)
-        console.log(`${msg[0]}: ${msg[1]}`);
+        console.log(`user: ${msg[0]}; message: ${msg[1]}`);
         io.emit('group-message', `we have a message from ${msg[0]}: ${msg[1]}`);
     });
 

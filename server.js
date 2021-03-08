@@ -3,7 +3,6 @@ const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 
 app.get('/', (req, res) => {
-    // res.sendFile(__dirname + '/index.html');
     res.send({ response: `Server is up and running at: ${new Date().toLocaleString()}` }).status(200);
 });
 
@@ -14,7 +13,15 @@ io.on('connection', (socket) => {
     socket.on('message', (msg) => {
         console.log("message: ", msg)
         console.log(`user: ${msg[0]} ; message: ${msg[1]}`);
-        io.emit('group-message', `we have a message from ${msg[0]}: ${msg[1]}`);
+
+        // add to db here
+
+        const response = {
+            "user": msg[0],
+            "message": msg[1]
+        };
+
+        io.emit('group-message', response);
     });
 
     // disconnect event

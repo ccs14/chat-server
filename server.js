@@ -11,17 +11,14 @@ io.on('connection', (socket) => {
 
     // message event
     socket.on('message', (msg) => {
+        // log each message
         console.log("message: ", msg)
-        console.log(`user: ${msg[0]} ; message: ${msg[1]}`);
+        console.log(`user: ${msg.user} ; message: ${msg.message}`);
 
-        // add to db here
+        // TODO: add message to db here
 
-        const response = {
-            "user": msg[0],
-            "message": msg[1]
-        };
-
-        io.emit('group-message', response);
+        // pass message object to other clients
+        io.emit('group-message', msg);
     });
 
     // disconnect event

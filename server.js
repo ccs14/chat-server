@@ -13,7 +13,7 @@ io.on('connection', (socket) => {
     socket.on('message', (msg) => {
         // log each message
         console.log("message: ", msg)
-        console.log(`user: ${msg.user} ; message: ${msg.message}`);
+        console.log(`user: ${msg[0].user} ; message: ${msg[0].message}`);
 
         // TODO: add message to db here
 
@@ -23,8 +23,8 @@ io.on('connection', (socket) => {
 
     // disconnect event
     socket.on('disconnect', () => {
-        console.log('user disconnected');
-        io.emit('user disconnected');
+        console.log('a user disconnected');
+        io.emit('a user disconnected');
     });
 });
 
